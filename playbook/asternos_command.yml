@@ -5,32 +5,26 @@
 
   tasks:
 
+
+
+  - name: Add interface
+    asterfusion.asternos.asternos_command:
+       commands:
+         - interface loopback 10
+
   - name: "Test asternos_command module: show command with retry"
     asterfusion.asternos.asternos_command:
        commands:
-         - show interface summary
-       retries: 3
-       interval: 3
+         - show running-config
+
     register: cmd_op
   - name: Print vars
     debug:
       msg: "{{cmd_op.stdout_lines}}"
 
-  - name: "Test asternos_command module: show command with wait_for"
-    asterfusion.asternos.asternos_command:
-       commands:
-         - show version
-       wait_for:
-         - result[0] contains AsterNOS
-    register: cmd_op
-  
-  - name: Print vars
-    debug:
-      msg: "{{cmd_op.stdout_lines}}"
-
-  - name: "Test asternos_command module: write command with prompt handling"
-    asterfusion.asternos.asternos_command:
-       commands:
-         - command: 'write'
-           prompt: '\[y/N\]: $'
-           answer: 'y'
+#  - name: "Test asternos_command module: write command with prompt handling"
+#    asterfusion.asternos.asternos_command:
+#       commands:
+#         - command: 'write'
+#           prompt: '\[y/N\]: $'
+#           answer: 'y'
