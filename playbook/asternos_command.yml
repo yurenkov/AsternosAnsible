@@ -1,7 +1,7 @@
 ---
 - name: "Test AsterNOS CLI"
   hosts: asterfusionswitch
-  gather_facts: yes
+  gather_facts: true
     tasks:
 
   - name: "Test asternos_command module: show command with retry"
