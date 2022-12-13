@@ -1,0 +1,6 @@
+---
+ansible_network_os: asterfusion.asternos.asternos
+ansible_ssh_user: admin
+ansible_ssh_pass: asteros
+ansible_httpapi_use_ssl: true
+ansible_httpapi_validate_certs: false
