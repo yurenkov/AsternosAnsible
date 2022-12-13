@@ -1,0 +1,48 @@
+---
+
+- name: Run
+  hosts: asterfusionswitch
+  gather_facts: false
+
+  tasks:
+
+  - name: Install
+    ansible.builtin.pip:
+      name:
+        - ansible-pylibssh
+    delegate_to: localhost
+
+  - name: Change config command
+    ansible.builtin.command: |
+      sonic-cli
+      -c 'configure'
+      -c 'interface loopback 8'
+      -c 'ip address 10.5.8.1/24'
+      -c ''
+      -c 'do show running-config'
+    register: changeconfig
+    changed_when: changeconfig.rc != 0
+
+  - name: Generic question with multiple different responses
+    ansible.builtin.expect:
+      command: sonic-cli -c 'write'
+      echo: true
+      responses:
+        Question:
+          - save running-config...: y
+    register: regexpect
+    ignore_errors: true
+
+  - name: Show startup-config
+    ansible.builtin.command: sonic-cli -c 'show startup-config'
+    register: startupconfig
+    changed_when: startupconfig.rc != 0
+
+  - name: Show running-config
+    ansible.builtin.command: sonic-cli -c 'show running-config'
+    register: runningconfig
+    changed_when: runningconfig.rc != 0
+
+  - name: Check save config
+    ansible.builtin.set_fact:
+      diff: "{{ startupconfig.stdout_lines | symmetric_difference(runningconfig.stdout_lines) }}"
