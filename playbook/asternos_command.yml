@@ -2,11 +2,12 @@
 - name: "Test AsterNOS CLI"
   hosts: asterfusionswitch
   gather_facts: true
-    tasks:
+
+  tasks:
 
   - name: "Test asternos_command module: show command with retry"
-    asternos_command:
-       commands: 
+    asterfusion.asternos.asternos_command:
+       commands:
          - show interface summary
        retries: 3
        interval: 3
@@ -16,10 +17,10 @@
       msg: "{{cmd_op.stdout_lines}}"
 
   - name: "Test asternos_command module: show command with wait_for"
-    asternos_command:
-       commands: 
+    asterfusion.asternos.asternos_command:
+       commands:
          - show version
-       wait_for: 
+       wait_for:
          - result[0] contains AsterNOS
     register: cmd_op
   
@@ -28,7 +29,7 @@
       msg: "{{cmd_op.stdout_lines}}"
 
   - name: "Test asternos_command module: write command with prompt handling"
-    asternos_command:
+    asterfusion.asternos.asternos_command:
        commands:
          - command: 'write'
            prompt: '\[y/N\]: $'
