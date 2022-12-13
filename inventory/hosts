@@ -9,7 +9,7 @@ asternos_sw2
 [asterfusionswitch:vars]
 ansible_network_os=asterfusion.asternos.asternos
 ansible_connection=network_cli
-ansible_ssh_user=admin
-ansible_ssh_pass=asteros
+ansible_ssh_user=kadmin
+ansible_ssh_pass=kadmin
 ansible_httpapi_use_ssl=true
 ansible_httpapi_validate_certs=false
