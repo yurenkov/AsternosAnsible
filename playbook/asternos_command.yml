@@ -21,7 +21,7 @@
       ansible.builtin.debug:
         msg: "{{ cmd_op.stdout_lines }}"
 
-    - name: "Test asternos_command module: write command with prompt handling"
+    - name: Write config
       asterfusion.asternos.asternos_command:
         commands:
           - command: 'write'
