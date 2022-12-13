@@ -25,9 +25,9 @@
       msg: "{{cmd_op.stdout_lines}}"
  
 
-#  - name: "Test asternos_command module: write command with prompt handling"
-#    asterfusion.asternos.asternos_command:
-#       commands:
-#         - command: 'write'
-#           prompt: '\[y/N\]: $'
-#           answer: 'y'
+  - name: "Test asternos_command module: write command with prompt handling"
+    asterfusion.asternos.asternos_command:
+       commands:
+         - command: 'write'
+           prompt: '\[y/N\]: $'
+           answer: 'y'
