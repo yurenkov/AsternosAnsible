@@ -10,6 +10,7 @@
   - name: Add interface
     asterfusion.asternos.asternos_command:
        commands:
+         - configure
          - interface loopback 10
 
   - name: "Test asternos_command module: show command with retry"
