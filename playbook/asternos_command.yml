@@ -25,7 +25,11 @@
       msg: "{{cmd_op.stdout_lines}}"
   - name: Show asternos_facts
     asterfusion.asternos.asternos_facts:
-      gather_subset: all
+      gather_subset: 
+        - '!all'
+        - '!min'
+      gather_network_resources:
+        - 'system'
 
 #  - name: "Test asternos_command module: write command with prompt handling"
 #    asterfusion.asternos.asternos_command:
