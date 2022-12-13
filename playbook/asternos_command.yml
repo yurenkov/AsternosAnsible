@@ -1,7 +1,7 @@
 ---
 - name: "Test AsterNOS CLI"
   hosts: asterfusionswitch
-  gather_facts: true
+  gather_facts: false
 
   tasks:
     - name: Add interface
