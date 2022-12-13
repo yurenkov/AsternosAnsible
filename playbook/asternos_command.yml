@@ -12,6 +12,7 @@
        commands:
          - configure
          - interface loopback 10
+         - ip address 10.5.10.1/24
 
   - name: "Test asternos_command module: show command with retry"
     asterfusion.asternos.asternos_command:
